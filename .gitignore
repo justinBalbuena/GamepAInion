@@ -16,3 +16,4 @@ Thumbs.db
 # Runtime uploads (keep folder, ignore contents)
 uploads/*
 !uploads/.gitkeep
+background_capture.png

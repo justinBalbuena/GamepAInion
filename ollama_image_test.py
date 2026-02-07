@@ -1,6 +1,7 @@
 # ollama_image_test.py
 import base64
 import requests
+import re
 from pathlib import Path
 
 MODEL = "gemma3:4b" # Or the model you have downloaded
@@ -47,7 +48,24 @@ def analyze_image(img_path_str, user_question, wiki_context=""):
     try:
         r = requests.post(OLLAMA_URL, json=payload, timeout=120)
         r.raise_for_status()
-        return r.json()["message"]["content"]
+        full_text = r.json()["message"]["content"]
+
+        # === NEW FILTERING LOGIC ===
+        # Use Regex to capture text specifically between "DIRECT ANSWER:" and "VISUAL PROOF:"
+        # This handles variations like "**DIRECT ANSWER:**" or "3. DIRECT ANSWER:"
+        match = re.search(
+            r"DIRECT ANSWER:[\s\*]*(.*?)(?=(?:4\.|VISUAL PROOF|5\.|STRATEGY|$))", 
+            full_text, 
+            re.DOTALL | re.IGNORECASE
+        )
+
+        if match:
+            # Found the clean answer! Return just that part.
+            return match.group(1).strip()
+        else:
+            # Fallback: If AI didn't follow format, return the whole thing so we don't return nothing.
+            return full_text
+
     except Exception as e:
         return f"Error: {str(e)}"
 
