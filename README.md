@@ -1,6 +1,6 @@
-# gamepAInion
+# GamepAInion
 
-**gamepAInion** is a hybrid edge-AI assistant that allows users to interact with multimodal AI (voice, text, and images) through an Android application, while leveraging a Snapdragon-powered laptop for heavier AI workloads such as speech-to-text (Whisper), vision processing, and large language model reasoning.
+**GamepAInion** is a hybrid edge-AI assistant that allows users to interact with multimodal AI (voice, text, and images) through an Android application, while leveraging a Snapdragon-powered laptop for heavier AI workloads such as speech-to-text (Whisper), vision processing, and large language model reasoning.
 
 The system is designed to showcase **multi-device collaboration**, **edge AI**, and **low-latency human-computer interaction** using Snapdragon hardware.
 
