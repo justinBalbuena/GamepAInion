@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .main_content {
+            display:flex;
+            margin: 0 auto;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello World!</h1>
+    <div class="main_content">
+        <img src="{{ qrcode(qr_data) }}">
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Terraria Companion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: sans-serif; text-align: center; padding: 20px; background: #222; color: #fff; 
+            margin: 200 auto;
+        }
+        .btn {
+            display: block; width: 100%; padding: 20px; margin: 10px 0; font-size: 18px; border: none; border-radius: 10px; cursor: pointer; }
+        .pc-btn {
+            background: #007bff; color: white; 
+        }
+        .phone-btn {
+            background: #28a745; color: white; 
+        }
+        #result {
+            margin-top: 20px; padding: 15px; border: 1px solid #444; background: #333; text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Terraria AI Guide</h1>
+
+    <div style="margin-bottom: 20px;">
+        <input type="text" id="userQuestion" placeholder="Ask about your screen (e.g. What ore is this?)" 
+            style="width: 80%; padding: 12px; border-radius: 5px; border: 1px solid #555; background: #111; color: white;">
+    </div>
+
+    <button class="btn pc-btn" onclick="triggerPCScreen()">🖥️ Scan Computer Screen</button>
+
+    <label class="btn phone-btn">
+        📸 Take Photo (Phone)
+        <input type="file" accept="image/*" capture="environment" style="display:none" onchange="uploadPhoto(this)">
+    </label>
+
+    <div id="result">Result will appear here...</div>
+
+    <div id="game_choice">
+
+    </div>
+
+    <script>
+    async function triggerPCScreen() {
+        const question = document.getElementById('userQuestion').value;
+        document.getElementById('result').innerText = "Scanning PC Screen...";
+        
+        const response = await fetch('/scan_screen', { 
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }, // Fixes 415 error
+            body: JSON.stringify({ prompt: question }) 
+        });
+        const data = await response.json();
+        document.getElementById('result').innerText = data.analysis;
+    }
+
+    async function uploadPhoto(input) {
+        const question = document.getElementById('userQuestion').value;
+        document.getElementById('result').innerText = "Uploading & Analyzing...";
+        
+        let file = input.files[0];
+        let formData = new FormData();
+        formData.append("file", file);
+        formData.append("prompt", question); // Pass question to phone upload
+
+        const response = await fetch('/upload_phone', { 
+            method: 'POST', 
+            body: formData // Browser handles headers for FormData automatically
+        });
+        const data = await response.json();
+        document.getElementById('result').innerText = data.analysis;
+    }
+</script>
+</body>
+</html>
