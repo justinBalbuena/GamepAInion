@@ -1,56 +1,102 @@
-# GamepAInion
-gamepAInion is a hybrid edge-AI assistant that allows users to interact with multimodal AI (voice, text, and images) through an Android application, while leveraging a Snapdragon-powered laptop for heavier AI workloads such as speech-to-text (Whisper), vision processing, and large language model reasoning.
+# gamepAInion
 
-The system is designed to showcase multi-device collaboration, edge AI, and low-latency human-computer interaction using Snapdragon hardware.
+**gamepAInion** is a hybrid edge-AI assistant that allows users to interact with multimodal AI (voice, text, and images) through an Android application, while leveraging a Snapdragon-powered laptop for heavier AI workloads such as speech-to-text (Whisper), vision processing, and large language model reasoning.
 
-Application Description
+The system is designed to showcase **multi-device collaboration**, **edge AI**, and **low-latency human-computer interaction** using Snapdragon hardware.
+
+---
+
+## Application Description
 
 The project consists of two main components:
 
-1. Android Application (Client)
+### 1. Android Application (Client)
+- Captures:
+  - Voice input (push-to-talk)
+  - Text prompts
+  - Images (camera or gallery)
+- Scans a QR code to connect to a local server
+- Sends user input to the server over HTTP
+- Displays the **final AI response only**
 
-Captures:
+### 2. Laptop Server (Backend)
+- Runs on a Snapdragon-powered Windows laptop
+- Handles:
+  - Whisper speech-to-text
+  - Image processing
+  - LLM reasoning
+  - Game analysis pipelines
+- Returns a clean, final response to the phone
 
-Voice input (push-to-talk)
+---
 
-Text prompts
+## Team Members
 
-Images (camera or gallery)
+- Melvin Estudillo – mestudillo01@manhattan.edu
 
-Scans a QR code to connect to a local server
+- Matheo Villada - mvillada01@manhattan.edu
 
-Sends user input to the server over HTTP
+- Justin Balbuena – jbalbuena02@manhattan.edu 
 
-Displays the final AI response only, keeping the phone lightweight and responsive
+---
 
-2. Laptop Server (Backend)
+## Repository Structure
 
-Runs on a Snapdragon-powered Windows laptop
+```
+.
+├── android-app/
+├── server/
+│   ├── index.py
+│   ├── ollama_image_test.py
+│   └── requirements.txt
+├── README.md
+└── LICENSE
+```
 
-Handles:
+---
 
-Whisper speech-to-text
+## Setup Instructions
 
-Image processing
+### Prerequisites
 
-LLM reasoning
+- Android Studio
+- Android phone (Android 10+)
+- Python 3.10+
+- Llama (gemma3:4b)
+- Windows 11 Snapdragon laptop
 
-Game analysis and decision pipelines
+---
 
-Returns a clean, final response to the phone
+### Server Setup
 
-This architecture allows:
+```bash
+cd server
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python index.py
+```
 
-Minimal compute load on the phone
+---
 
-Heavy AI workloads on an edge device
+### Android App Setup
 
-Fast iteration and modular expansion
+1. Open project in Android Studio
+2. Sync Gradle
+3. Run on device or install APK
 
-Team Members
+---
 
-Melvin Estudillo – mestudillo01@manhattan.edu
+## Running the Application
 
-Matheo Villada - mvillada01@manhattan.edu
+1. Start the server
+2. Open the Android app
+3. Scan the QR code
+4. Send text, voice, or image input
+5. View the final response on the phone
 
-Justin Balbuena – jbalbuena02@manhattan.edu
+---
+
+## License
+
+MIT License
