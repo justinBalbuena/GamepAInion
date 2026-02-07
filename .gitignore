@@ -17,3 +17,9 @@ Thumbs.db
 uploads/*
 !uploads/.gitkeep
 background_capture.png
+
+# PyInstaller artifacts
+__pycache__/
+build/
+dist/
+*.spec

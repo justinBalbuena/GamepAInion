@@ -12,6 +12,8 @@ from flask import request, jsonify
 import base64 
 import tempfile
 from faster_whisper import WhisperModel 
+import webbrowser
+from threading import Timer
 
 # Load once at startup 
 whisper_model = WhisperModel( 
@@ -159,6 +161,10 @@ async def process_audio():
         os.remove(wav_path) 
 
 
+def open_browser():
+    webbrowser.open_new("http://127.0.0.1:5000") # Or your 0.0.0.0 address
+
 if __name__ == "__main__":
-    # host='0.0.0.0' is REQUIRED for other devices to see the server
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Wait 1 second for server to start, then open browser
+    Timer(1, open_browser).start() 
+    app.run(host='0.0.0.0', port=5000)
