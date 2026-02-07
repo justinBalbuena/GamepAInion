@@ -1,6 +1,6 @@
 # GamepAInion
 
-**GamepAInion** is a hybrid edge-AI assistant that allows users to interact with multimodal AI (voice, text, and images) through an Android application, while leveraging a Snapdragon-powered laptop for heavier AI workloads such as speech-to-text (Whisper), vision processing, and large language model reasoning.
+**GamepAInion** is a hybrid edge-AI assistant that allows users to interact with multimodal AI (voice, text, and images) through an Android application, utilizing AI workloads such as speech-to-text (Whisper), vision processing, and large language model reasoning.
 
 The system is designed to showcase **multi-device collaboration**, **edge AI**, and **low-latency human-computer interaction** using Snapdragon hardware.
 
@@ -63,7 +63,6 @@ The project consists of two main components:
 - Android phone (Android 10+)
 - Python 3.10+
 - Llama (gemma3:4b)
-- Windows 11 Snapdragon laptop
 
 ---
 
@@ -76,7 +75,18 @@ python -m venv .venv
 pip install -r requirements.txt
 python index.py
 ```
+---
 
+## 🚀 Download & Demo
+
+**Don't want to build from source?** Download the latest release below.
+
+| Platform | Download | Instructions |
+| :--- | :--- | :--- |
+| **Windows** | [**Download .EXE**](#) | Run this on your PC. Requires [Ollama](https://ollama.com) installed. |
+| **Android** | [**Download .APK**](#) | Install on your phone. Connects via QR Code. |
+
+---
 ---
 
 ### Android App Setup
